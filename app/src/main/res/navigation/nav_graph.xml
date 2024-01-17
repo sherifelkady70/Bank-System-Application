@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_home_screen_to_allUsers"
             app:destination="@id/allUsers" />
+        <action
+            android:id="@+id/action_home_screen_to_transferBalance"
+            app:destination="@id/transferBalance" />
     </fragment>
     <fragment
         android:id="@+id/allUsers"
         android:name="com.route.banksystemapplication.ui.allusers.AllUsers"
         android:label="fragment_all_users"
         tools:layout="@layout/fragment_all_users" />
+    <fragment
+        android:id="@+id/transferBalance"
+        android:name="com.route.banksystemapplication.ui.transferbalance.TransferBalance"
+        android:label="fragment_transfer_balance"
+        tools:layout="@layout/fragment_transfer_balance" />
 </navigation>

@@ -4,9 +4,8 @@ import com.route.banksystemapplication.roomdatabase.entities.UsersTable
 
 class DummyData {
     companion object{
-        val dummyList = ArrayList<UsersTable>()
-
         fun getDummyData() : List<UsersTable>{
+            val dummyList = mutableListOf<UsersTable>()
             dummyList.add(UsersTable(1,"sherif Abdelrhman","selkady038@gmail.com",10000))
             dummyList.add(UsersTable(2,"mohamed Abelrhman","mohamed@gmail.com",10000))
             dummyList.add(UsersTable(3,"amr Abdelrhman","amr@gmail.com",15000))

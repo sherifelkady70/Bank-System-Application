@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.route.banksystemapplication.R
 import com.route.banksystemapplication.databinding.FragmentHomeScreenBinding
@@ -26,8 +27,13 @@ class home_screen : Fragment() {
 
 
         binding.allUsersBtn.setOnClickListener {
+            Navigation.findNavController(binding.allUsersBtn)
+                .navigate(R.id.action_home_screen_to_allUsers)
         }
-        binding.allTransfersBtn.setOnClickListener { }
+        binding.allTransfersBtn.setOnClickListener {
+            Navigation.findNavController(binding.allTransfersBtn)
+                .navigate(R.id.action_home_screen_to_transferBalance)
+        }
 
         return binding.root
     }

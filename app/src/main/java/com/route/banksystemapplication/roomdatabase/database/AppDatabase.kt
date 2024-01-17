@@ -22,12 +22,12 @@ abstract class AppDatabase : RoomDatabase(){
 
     companion object{
         @Volatile
-        private var instance : AppDatabase?=null
+        private var Instance : AppDatabase?=null
         private val lock =Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(lock){
-            instance ?: createDatabase(context).also {
-                instance=it
+        operator fun invoke(context: Context) = Instance ?: synchronized(lock){
+            Instance ?: createDatabase(context).also {
+                Instance=it
             }
         }
 
@@ -42,10 +42,8 @@ abstract class AppDatabase : RoomDatabase(){
                 super.onCreate(db)
 
                 Executors.newSingleThreadExecutor().execute {
-                    instance.let {
-                        if (it != null) {
-                            it.userDao().insert(user = DummyData.getDummyData())
-                        }
+                    Instance?.let {
+                        it.userDao().insert(DummyData.getDummyData())
                     }
                 }
             }

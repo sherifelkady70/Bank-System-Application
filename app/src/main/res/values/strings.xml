@@ -2,6 +2,10 @@
     <string name="app_name">BankSystemApplication</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="all_customers">All Customers</string>
+    <string name="all_customers">All Clients</string>
     <string name="doolaricon">$</string>
+    <string name="all_transfers">All Transfers</string>
+    <string name="sender">Sender</string>
+    <string name="receiver">Receiver</string>
+    <string name="amount">Amount</string>
 </resources>
