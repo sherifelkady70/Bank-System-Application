@@ -8,4 +8,12 @@
     <string name="sender">Sender</string>
     <string name="receiver">Receiver</string>
     <string name="amount">Amount</string>
+    <string name="client_information">Client Information</string>
+    <string name="name">Name :</string>
+    <string name="email">Email :</string>
+    <string name="balance">Balance :</string>
+    <string name="dollaricon">$</string>
+    <string name="transfer_balance">Transfer Balance</string>
+    <string name="please_select_name_that_you_want_to_transfer">PLease Select Name That you want to transfer</string>
+    <string name="confirm">Confirm</string>
 </resources>

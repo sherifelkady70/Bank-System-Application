@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Update
@@ -11,7 +12,7 @@ import com.route.banksystemapplication.roomdatabase.entities.UsersTable
 
 @Dao
 interface UserDao {
-  @Insert
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
   fun insert(user:List<UsersTable>)
   @Query("SELECT * FROM UsersTable")
   fun getAllUsers():LiveData<List<UsersTable>>

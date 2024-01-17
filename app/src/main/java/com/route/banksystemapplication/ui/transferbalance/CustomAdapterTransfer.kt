@@ -33,7 +33,7 @@ class CustomAdapterTransfer : RecyclerView.Adapter<CustomAdapterTransfer.ViewHol
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

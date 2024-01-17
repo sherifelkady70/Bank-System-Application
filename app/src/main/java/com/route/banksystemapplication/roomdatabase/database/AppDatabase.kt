@@ -1,6 +1,7 @@
 package com.route.banksystemapplication.roomdatabase.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,8 +11,10 @@ import com.route.banksystemapplication.roomdatabase.dao.TransferDao
 import com.route.banksystemapplication.roomdatabase.dao.UserDao
 import com.route.banksystemapplication.roomdatabase.entities.TransferTable
 import com.route.banksystemapplication.roomdatabase.entities.UsersTable
+import java.lang.Exception
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import java.util.concurrent.locks.Lock
 
 @Database(entities = [UsersTable::class,TransferTable::class], version = 1)
 abstract class AppDatabase : RoomDatabase(){
@@ -23,17 +26,14 @@ abstract class AppDatabase : RoomDatabase(){
     companion object{
         @Volatile
         private var Instance : AppDatabase?=null
-        private val lock =Any()
+        private val Lock =Any()
 
-        operator fun invoke(context: Context) = Instance ?: synchronized(lock){
+        operator fun invoke(context: Context) = Instance ?: synchronized(Lock) {
             Instance ?: createDatabase(context).also {
-                Instance=it
+                Instance = it
             }
         }
-
-
-
-        fun createDatabase(context: Context) = Room.databaseBuilder(
+        private fun createDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
             "bankDatabase"
@@ -42,11 +42,19 @@ abstract class AppDatabase : RoomDatabase(){
                 super.onCreate(db)
 
                 Executors.newSingleThreadExecutor().execute {
-                    Instance?.let {
-                        it.userDao().insert(DummyData.getDummyData())
+                    try {
+                        Instance?.userDao()?.insert(user = DummyData.getDummyData())
+//                        val data = DummyData.getDummyData()
+//                        data.forEach {  user ->
+//                            Log.d("AppDatabase","data : $user")
+//                        }
+                    }
+                    catch (e:Exception){
+                        e.printStackTrace()
                     }
                 }
             }
-        }).build()
+        }).fallbackToDestructiveMigration()
+            .build()
     }
 }
